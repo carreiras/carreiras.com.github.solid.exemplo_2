@@ -14,16 +14,16 @@ public class ReajusteService {
     }
 
     public void reajustarSalarioDoFuncionario(Funcionario funcionario, BigDecimal aumento) {
-        // Como deveria ser esta classe sem o OCP
-        // this.validacoes.forEach(v -> v.validar(funcionario, aumento));
+        // Aplicando o DIP
+        // Ao implementarmos o O do SOLID, não é automático, mas já somos induzidos a implementar o S e o D juntos.
+        this.validacoes.forEach(v -> v.validar(funcionario, aumento));
 
-        ValidacaoPercentualReajuste validacaoPercentualReajuste = new ValidacaoPercentualReajuste();
-        ValidacaoPeriodicidadeEntreReajuste validacaoPeriodicidadeEntreReajuste = new ValidacaoPeriodicidadeEntreReajuste();
+        // ValidacaoPercentualReajuste validacaoPercentualReajuste = new ValidacaoPercentualReajuste();
+        // ValidacaoPeriodicidadeEntreReajuste validacaoPeriodicidadeEntreReajuste = new ValidacaoPeriodicidadeEntreReajuste();
 
-        validacaoPercentualReajuste.validar(funcionario, aumento);
-        validacaoPeriodicidadeEntreReajuste.validar(funcionario, aumento);
+        // validacaoPercentualReajuste.validar(funcionario, aumento);
+        // validacaoPeriodicidadeEntreReajuste.validar(funcionario, aumento);
 
-        // Ao aplicar o OCP, automaticamente aplicou-se o DIP
 
         BigDecimal salarioReajustado = funcionario.getSalario().add(aumento);
         funcionario.atualizarSalario(salarioReajustado);
